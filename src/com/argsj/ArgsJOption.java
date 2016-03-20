@@ -1,50 +1,94 @@
-class ArgJOption {
+package com.argsj;
 
+import com.argsj.exception.OptionException;
+
+public class ArgsJOption {
+
+	/**
+	 * Short option
+	 */
 	private String shortOption;
+	/**
+	 * Long option
+	 */
 	private String longOption;
+	/**
+	 * Argument value passed on the command line
+	 */
 	private String argValue;
+	/**
+	 * Argument value to be of the defined type
+	 */
 	private Class<? extends Number> type;
+	/**
+	 * To determine if an option should have an argument
+	 */
 	private boolean hasArgument;
-	private boolean isProvided;
 
+	/**
+	 * Argument value of the option
+	 * 
+	 * @return
+	 */
 	public String getArgValue() {
 		return argValue;
 	}
 
-	public void setArgValue(String argValue) {
+	/**
+	 * Set argument value
+	 * 
+	 * @param argValue
+	 */
+	void setArgValue(String argValue) {
 		this.argValue = argValue;
 	}
 
-	public boolean hasArgument() {
+	/**
+	 * Determine if argument is required
+	 * 
+	 * @return
+	 */
+	boolean hasArgument() {
 		return hasArgument;
 	}
 
-	public ArgJOption hasArgument(boolean hasArgument) {
+	public ArgsJOption hasArgument(boolean hasArgument) {
 		this.hasArgument = hasArgument;
 		return this;
 	}
 
-	public boolean isProvided() {
-		return isProvided;
-	}
-
-	public void setProvided(boolean isProvided) {
-		this.isProvided = isProvided;
-	}
-
-	public Class<? extends Number> getType() {
+	/**
+	 * Argument value of the type (Class)
+	 * 
+	 * @return
+	 */
+	Class<? extends Number> getType() {
 		return type;
 	}
 
-	public ArgJOption ofType(Class<? extends Number> type) {
+	/**
+	 * Set the Class type of the argument value
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public ArgsJOption ofType(Class<? extends Number> type) {
 		this.type = type;
 		return this;
 	}
 
-	public void checkArgValueAsType() {
+	/**
+	 * Check if argument value is of the mentioned type
+	 */
+	void checkArgValueAsType() {
 		getArgValueAsType();
 	}
 
+	/**
+	 * Parses the argument value to the required type
+	 * 
+	 * @return
+	 */
 	public Number getArgValueAsType() {
 		if (type == null) {
 			throw new OptionException("Argument type not declared for option: " + longOption);
@@ -89,6 +133,11 @@ class ArgJOption {
 		return number;
 	}
 
+	/**
+	 * Returns value as an int
+	 * 
+	 * @return
+	 */
 	public int getArgValueAsInt() {
 		boolean internallySet = false;
 		int intValue;
@@ -109,6 +158,11 @@ class ArgJOption {
 
 	}
 
+	/**
+	 * Returns value as double
+	 * 
+	 * @return
+	 */
 	public double getArgValueAsDouble() {
 		boolean internallySet = false;
 		double doubleValue;
@@ -127,6 +181,11 @@ class ArgJOption {
 		return doubleValue;
 	}
 
+	/**
+	 * Returns value as float
+	 * 
+	 * @return
+	 */
 	public float getArgValueAsFloat() {
 		boolean internallySet = false;
 		float floatValue;
@@ -145,6 +204,11 @@ class ArgJOption {
 		return floatValue;
 	}
 
+	/**
+	 * Returns value as long
+	 * 
+	 * @return
+	 */
 	public long getArgValueAsLong() {
 		boolean internallySet = false;
 		long longValue;
@@ -163,30 +227,38 @@ class ArgJOption {
 		return longValue;
 	}
 
-	public ArgJOption(String shortOption, String longOption) {
+	/**
+	 * Constructor
+	 * 
+	 * @param shortOption
+	 * @param longOption
+	 */
+	public ArgsJOption(String shortOption, String longOption) {
 		this.shortOption = shortOption;
 		this.longOption = longOption;
 	}
 
+	/**
+	 * Short option
+	 * 
+	 * @return
+	 */
 	public String getShortOption() {
 		return shortOption;
 	}
 
-	public void setShortOption(String shortOption) {
-		this.shortOption = shortOption;
-	}
-
+	/**
+	 * Long option
+	 * 
+	 * @return
+	 */
 	public String getLongOption() {
 		return longOption;
 	}
 
-	public void setLongOption(String longOption) {
-		this.longOption = longOption;
-	}
-
 	@Override
 	public String toString() {
-		return "short option: " + shortOption + ", long option: " + longOption + ", has argument: " + hasArgument
-				+ ", argument value: " + argValue;
+		return "Short option: " + shortOption + ", Long option: " + longOption + ", Has argument: " + hasArgument
+				+ ", Argument value: " + argValue + ", Type: " + type;
 	}
 }
