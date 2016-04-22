@@ -1,7 +1,5 @@
 package com.argsj;
 
-import com.argsj.exception.ArgumentRequiredException;
-
 public class ArgsJCommandLine {
 
 	/**

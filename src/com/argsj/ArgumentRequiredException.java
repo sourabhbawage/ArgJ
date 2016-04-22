@@ -1,4 +1,4 @@
-package com.argsj.exception;
+package com.argsj;
 
 public class ArgumentRequiredException extends RuntimeException {
 

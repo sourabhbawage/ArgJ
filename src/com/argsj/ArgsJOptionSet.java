@@ -3,8 +3,6 @@ package com.argsj;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.argsj.exception.OptionException;
-
 public class ArgsJOptionSet {
 
 	/**
